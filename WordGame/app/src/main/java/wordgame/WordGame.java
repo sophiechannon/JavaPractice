@@ -7,6 +7,8 @@ public class WordGame {
         word = newWord;
     }
     public String getWordToGuess() {
-        return "M_____";
+        char firstLetter = word.charAt(0);
+        String wordToGuess = String.format("%c" + "_".repeat(word.length() - 1), firstLetter);
+        return wordToGuess;
     }
 }
