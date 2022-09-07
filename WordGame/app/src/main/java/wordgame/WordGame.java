@@ -7,8 +7,15 @@ public class WordGame {
         word = newWord;
     }
     public String getWordToGuess() {
-        char firstLetter = word.charAt(0);
-        String wordToGuess = String.format("%c" + "_".repeat(word.length() - 1), firstLetter);
-        return wordToGuess;
+        StringBuilder wordToGuess = new StringBuilder();
+        for (int i = 0; i < word.length(); i++) {
+            char firstLetter = word.charAt(0);
+            if (i == 0) {
+                wordToGuess.append(firstLetter);
+            } else {
+                wordToGuess.append("_");
+            }
+        }
+        return wordToGuess.toString();
     }
 }
