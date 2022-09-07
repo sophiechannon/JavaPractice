@@ -1,10 +1,13 @@
 package wordgame;
 
+import java.util.Random;
+
 public class WordGame {
     String word;
+    int turnsRemaining = 10;
 
-    WordGame(String newWord) {
-        word = newWord;
+    WordGame(WordChooser chooser) {
+        word = chooser.getRandomWordFromDictionary();
     }
     public String getWordToGuess() {
         StringBuilder wordToGuess = new StringBuilder();
@@ -17,5 +20,9 @@ public class WordGame {
             }
         }
         return wordToGuess.toString();
+    }
+
+    public int getRemainingAttempts() {
+        return turnsRemaining;
     }
 }
