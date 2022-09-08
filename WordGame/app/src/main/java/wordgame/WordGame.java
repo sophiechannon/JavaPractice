@@ -5,25 +5,16 @@ import java.util.List;
 
 public class WordGame {
     private String word;
+    private Masker masker;
     private int turnsRemaining = 10;
     List<Character> guessedChars = new ArrayList<>();
 
-    WordGame(WordChooser chooser) {
+    WordGame(WordChooser chooser, Masker masker) {
         word = chooser.getRandomWordFromDictionary();
+        this.masker = masker;
     }
     public String getWordToGuess() {
-        StringBuilder wordToGuess = new StringBuilder();
-        for (int i = 0; i < word.length(); i++) {
-            char firstLetter = word.charAt(0);
-            if (i == 0) {
-                wordToGuess.append(firstLetter);
-            } else if (guessedChars.contains(word.charAt(i))) {
-                wordToGuess.append(word.charAt(i));
-            } else {
-                wordToGuess.append("_");
-            }
-        }
-        return wordToGuess.toString();
+        return masker.getMaskedWord(word, guessedChars);
     }
 
     public int getRemainingAttempts() {

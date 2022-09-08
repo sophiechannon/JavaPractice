@@ -9,7 +9,8 @@ public class App {
 
     public static void main(String[] args) {
         WordChooser word = new WordChooser();
-        WordGame game = new WordGame(word);
+        Masker masker = new Masker();
+        WordGame game = new WordGame(word, masker );
         System.out.println("Welcome! Today the word to guess is:");
         do {
             System.out.println(game.getWordToGuess());
