@@ -9,23 +9,22 @@ import java.util.Scanner;
 public class App {
 
     public static void main(String[] args) {
-        WordGame gameOne = new WordGame(new WordChooser(), new Masker(), "Sophie");
-        WordGame gameTwo = new WordGame(new WordChooser(), new Masker(), "Rosie");
+        System.out.println("Player one, please enter your name:");
+        Scanner pOneName = new Scanner(System.in);
+        System.out.println("Player two, please enter your name:");
+        Scanner pTwoName = new Scanner(System.in);
+
+        WordGame gameOne = new WordGame(new WordChooser(), new Masker(), pOneName.nextLine());
+        WordGame gameTwo = new WordGame(new WordChooser(), new Masker(), pTwoName.nextLine());
         WordGame[] players = {gameOne, gameTwo};
         Integer current = new Random().nextInt(2);
-        String player;
-        if (current == 0) {
-            player = "Player One";
-        } else {
-            player = "Player Two";
-        }
 
         System.out.println("Welcome! Today the word to guess is:");
         System.out.println("Player one:" + gameOne.getWordToGuess());
         System.out.println("Player two:" + gameTwo.getWordToGuess());
 
         do {
-            System.out.println(player + ": enter one letter to guess (" + players[current].getRemainingAttempts() +" attempts remaining):");
+            System.out.println(players[current].getName() + ": enter one letter to guess (" + players[current].getRemainingAttempts() +" attempts remaining):");
             System.out.println(players[current].getWordToGuess());
             Scanner userInput = new Scanner(System.in);
             Character letter = userInput.nextLine().charAt(0);
@@ -37,7 +36,7 @@ public class App {
             System.out.println("\n");
 
             if (players[current].isGameWon()) {
-                System.out.println(player + " you have won!");
+                System.out.println(players[current].name + " you have won!");
                 break;
             }
 
@@ -48,10 +47,8 @@ public class App {
 
             if (current == 0) {
                 current = 1;
-                player = "Player Two";
             } else {
                 current = 0;
-                player = "Player One";
             }
 
         } while (players[current].getRemainingAttempts() > 0);
