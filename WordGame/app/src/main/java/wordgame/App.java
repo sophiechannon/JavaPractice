@@ -3,12 +3,34 @@
  */
 package wordgame;
 
+import java.util.Scanner;
+
 public class App {
-    public String getGreeting() {
-        return "Hello World!";
-    }
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+        WordChooser word = new WordChooser();
+        WordGame game = new WordGame(word);
+        System.out.println("Welcome! Today the word to guess is:");
+        do {
+            System.out.println(game.getWordToGuess());
+            System.out.println("Enter one letter to guess (" + game.getRemainingAttempts() +" attempts remaining):");
+            Scanner userInput = new Scanner(System.in);
+            Character letter = userInput.nextLine().charAt(0);
+            if (game.guessLetter(letter)) {
+                System.out.println("Right!");
+            } else {
+                System.out.println("Wrong...");
+            }
+
+            if (game.isGameWon()) {
+                System.out.println("You have guessed the word " + game.getWordToGuess() + " correctly!");
+                break;
+            }
+
+            if (game.isGameLost()) {
+                System.out.println("You have lost.");
+                break;
+            }
+        } while (game.getRemainingAttempts() > 0);
     }
 }

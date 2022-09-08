@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WordGame {
-    String word;
-    int turnsRemaining = 10;
+    private String word;
+    private int turnsRemaining = 10;
     List<Character> guessedChars = new ArrayList<>();
 
     WordGame(WordChooser chooser) {
@@ -35,12 +35,29 @@ public class WordGame {
     }
 
     public Boolean guessLetter(char letter) {
+        letter = Character.toUpperCase(letter);
         if (word.contains(Character.toString(letter))) {
             guessedChars.add(letter);
             return true;
         } else {
             turnsRemaining --;
             return false;
+        }
+    }
+
+    public Boolean isGameLost() {
+        if (turnsRemaining <= 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public Boolean isGameWon() {
+        if (getWordToGuess().contains("_")) {
+            return false;
+        } else {
+            return true;
         }
     }
 }

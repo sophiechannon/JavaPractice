@@ -83,4 +83,51 @@ public class WordGameTest {
         assertEquals(game.getRemainingAttempts(), 10);
         assertEquals(game.getGuessedChars(), Arrays.asList('E'));
     }
+
+    @Test public void testGameIsLostTrue() {
+        WordChooser mockedChooser = mock(WordChooser.class);
+        when(mockedChooser.getRandomWordFromDictionary()).thenReturn("DEVELOPER");
+        WordGame game = new WordGame(mockedChooser);
+        game.guessLetter('Z');
+        game.guessLetter('Z');
+        game.guessLetter('Z');
+        game.guessLetter('Z');
+        game.guessLetter('Z');
+        game.guessLetter('Z');
+        game.guessLetter('Z');
+        game.guessLetter('Z');
+        game.guessLetter('Z');
+        game.guessLetter('Z');
+        assertEquals(game.isGameLost(), true);
+    }
+
+    @Test public void testGameIsLostFalse() {
+        WordChooser mockedChooser = mock(WordChooser.class);
+        when(mockedChooser.getRandomWordFromDictionary()).thenReturn("DEVELOPER");
+        WordGame game = new WordGame(mockedChooser);
+        game.guessLetter('Z');
+        game.guessLetter('Z');
+        game.guessLetter('Z');
+        game.guessLetter('Z');
+        game.guessLetter('Z');
+        game.guessLetter('Z');
+        game.guessLetter('Z');
+        game.guessLetter('Z');
+        game.guessLetter('Z');
+        assertEquals(game.isGameLost(), false);
+    }
+
+    @Test public void testGameIsWonTrue() {
+        WordChooser mockedChooser = mock(WordChooser.class);
+        when(mockedChooser.getRandomWordFromDictionary()).thenReturn("DEVELOPER");
+        WordGame game = new WordGame(mockedChooser);
+        game.guessLetter('D');
+        game.guessLetter('E');
+        game.guessLetter('v');
+        game.guessLetter('l');
+        game.guessLetter('o');
+        game.guessLetter('p');
+        game.guessLetter('r');
+        assertEquals(game.isGameWon(), true);
+    }
 }
