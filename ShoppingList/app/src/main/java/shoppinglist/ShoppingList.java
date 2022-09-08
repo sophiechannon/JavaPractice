@@ -1,17 +1,16 @@
 package shoppinglist;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class ShoppingList {
-     List<String> items = new ArrayList<>();
+     List<ShoppingItem> items = new ArrayList<>();
 
-     public void addItem(String item) {
+     public void addItem(ShoppingItem item) {
          items.add(item);
      }
 
-     public List<String> getItems() {
+     public List<ShoppingItem> getItems() {
         return items;
     }
 }

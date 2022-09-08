@@ -13,8 +13,10 @@ public class ShoppingListTest {
 
     @Test public void testItemsCanBeAddedToList() {
         ShoppingList list = new ShoppingList();
-        list.addItem("Coffee");
-        list.addItem("Tea");
-        assertEquals(list.getItems(), Arrays.asList("Coffee", "Tea"));
+        ShoppingItem itemOne = new ShoppingItem("Coffee", 4.99);
+        ShoppingItem itemTwo = new ShoppingItem("Tea", 3.50);
+        list.addItem(itemOne);
+        list.addItem(itemTwo);
+        assertEquals(list.getItems(), Arrays.asList(itemOne, itemTwo));
     }
 }
