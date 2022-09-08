@@ -9,8 +9,8 @@ import java.util.Scanner;
 public class App {
 
     public static void main(String[] args) {
-        WordGame gameOne = new WordGame(new WordChooser(), new Masker());
-        WordGame gameTwo = new WordGame(new WordChooser(), new Masker());
+        WordGame gameOne = new WordGame(new WordChooser(), new Masker(), "Sophie");
+        WordGame gameTwo = new WordGame(new WordChooser(), new Masker(), "Rosie");
         WordGame[] players = {gameOne, gameTwo};
         Integer current = new Random().nextInt(2);
         String player;

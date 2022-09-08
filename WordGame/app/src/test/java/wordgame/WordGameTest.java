@@ -13,15 +13,22 @@ public class WordGameTest {
     @Test public void testGetsInitialRemainingAttempts() {
         WordChooser chooser = new WordChooser();
         Masker masker = new Masker();
-        WordGame game = new WordGame(chooser, masker);
+        WordGame game = new WordGame(chooser, masker, "Sophie");
         assertEquals(game.getRemainingAttempts(), 10);
+    }
+
+    @Test public void testGetsName() {
+        WordChooser chooser = new WordChooser();
+        Masker masker = new Masker();
+        WordGame game = new WordGame(chooser, masker, "Sophie");
+        assertEquals(game.getName(), "Sophie");
     }
 
     @Test public void testGetsWordToGuessAfterGuesses() {
         WordChooser mockedChooser = mock(WordChooser.class);
         Masker masker = new Masker();
         when(mockedChooser.getRandomWordFromDictionary()).thenReturn("MAKERS");
-        WordGame game = new WordGame(mockedChooser, masker);
+        WordGame game = new WordGame(mockedChooser, masker, "Sophie");
         game.guessLetter('K');
         game.guessLetter('A');
         game.guessLetter('Z');
@@ -32,7 +39,7 @@ public class WordGameTest {
         WordChooser mockedChooser = mock(WordChooser.class);
         Masker masker = new Masker();
         when(mockedChooser.getRandomWordFromDictionary()).thenReturn("DEVELOPER");
-        WordGame game = new WordGame(mockedChooser, masker);
+        WordGame game = new WordGame(mockedChooser, masker, "Sophie");
         game.guessLetter('E');
         assertEquals(game.getWordToGuess(), "DE_E___E_");
     }
@@ -41,7 +48,7 @@ public class WordGameTest {
         WordChooser mockedChooser = mock(WordChooser.class);
         Masker masker = new Masker();
         when(mockedChooser.getRandomWordFromDictionary()).thenReturn("MAKERS");
-        WordGame game = new WordGame(mockedChooser, masker);
+        WordGame game = new WordGame(mockedChooser, masker, "Sophie");
         assertEquals(game.getGuessedChars(), Arrays.asList());
     }
 
@@ -49,7 +56,7 @@ public class WordGameTest {
         WordChooser mockedChooser = mock(WordChooser.class);
         Masker masker = new Masker();
         when(mockedChooser.getRandomWordFromDictionary()).thenReturn("MAKERS");
-        WordGame game = new WordGame(mockedChooser, masker);
+        WordGame game = new WordGame(mockedChooser, masker, "Sophie");
         game.guessLetter('L');
         assertEquals(game.getRemainingAttempts(), 9);
         assertEquals(game.getGuessedChars(), Arrays.asList());
@@ -59,7 +66,7 @@ public class WordGameTest {
         WordChooser mockedChooser = mock(WordChooser.class);
         Masker masker = new Masker();
         when(mockedChooser.getRandomWordFromDictionary()).thenReturn("MAKERS");
-        WordGame game = new WordGame(mockedChooser, masker);
+        WordGame game = new WordGame(mockedChooser, masker,"Sophie");
         game.guessLetter('A');
         assertEquals(game.getRemainingAttempts(), 10);
         assertEquals(game.getGuessedChars(), Arrays.asList('A'));
@@ -69,7 +76,7 @@ public class WordGameTest {
         WordChooser mockedChooser = mock(WordChooser.class);
         Masker masker = new Masker();
         when(mockedChooser.getRandomWordFromDictionary()).thenReturn("MAKERS");
-        WordGame game = new WordGame(mockedChooser, masker);
+        WordGame game = new WordGame(mockedChooser, masker, "Sophie");
         assertEquals(game.guessLetter('L'), false);
     }
 
@@ -77,7 +84,7 @@ public class WordGameTest {
         WordChooser mockedChooser = mock(WordChooser.class);
         Masker masker = new Masker();
         when(mockedChooser.getRandomWordFromDictionary()).thenReturn("MAKERS");
-        WordGame game = new WordGame(mockedChooser, masker);
+        WordGame game = new WordGame(mockedChooser, masker, "Sophie");
         assertEquals(game.guessLetter('A'), true);
     }
 
@@ -85,7 +92,7 @@ public class WordGameTest {
         WordChooser mockedChooser = mock(WordChooser.class);
         Masker masker = new Masker();
         when(mockedChooser.getRandomWordFromDictionary()).thenReturn("DEVELOPER");
-        WordGame game = new WordGame(mockedChooser, masker);
+        WordGame game = new WordGame(mockedChooser, masker, "Sophie");
         game.guessLetter('Z');
         game.guessLetter('Z');
         game.guessLetter('Z');
@@ -103,7 +110,7 @@ public class WordGameTest {
         WordChooser mockedChooser = mock(WordChooser.class);
         Masker masker = new Masker();
         when(mockedChooser.getRandomWordFromDictionary()).thenReturn("DEVELOPER");
-        WordGame game = new WordGame(mockedChooser, masker);
+        WordGame game = new WordGame(mockedChooser, masker, "Sophie");
         game.guessLetter('Z');
         game.guessLetter('Z');
         game.guessLetter('Z');
@@ -120,7 +127,7 @@ public class WordGameTest {
         WordChooser mockedChooser = mock(WordChooser.class);
         Masker masker = new Masker();
         when(mockedChooser.getRandomWordFromDictionary()).thenReturn("DEVELOPER");
-        WordGame game = new WordGame(mockedChooser, masker);
+        WordGame game = new WordGame(mockedChooser, masker, "Sophie");
         game.guessLetter('D');
         game.guessLetter('E');
         game.guessLetter('v');

@@ -6,13 +6,20 @@ import java.util.List;
 public class WordGame {
     private String word;
     private Masker masker;
+    String name;
     private int turnsRemaining = 10;
     List<Character> guessedChars = new ArrayList<>();
 
-    WordGame(WordChooser chooser, Masker masker) {
+    WordGame(WordChooser chooser, Masker masker, String name) {
         word = chooser.getRandomWordFromDictionary();
         this.masker = masker;
+        this.name = name;
     }
+
+    public String getName() {
+        return name;
+    }
+
     public String getWordToGuess() {
         return masker.getMaskedWord(word, guessedChars);
     }
