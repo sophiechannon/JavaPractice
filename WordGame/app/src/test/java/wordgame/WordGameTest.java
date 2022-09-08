@@ -43,9 +43,9 @@ public class WordGameTest {
         WordChooser mockedChooser = mock(WordChooser.class);
         when(mockedChooser.getRandomWordFromDictionary()).thenReturn("MAKERS");
         WordGame game = new WordGame(mockedChooser);
-        game.guessLetter('M');
+        game.guessLetter('A');
         assertEquals(game.getRemainingAttempts(), 10);
-        assertEquals(game.getGuessedChars(), Arrays.asList('M'));
+        assertEquals(game.getGuessedChars(), Arrays.asList('A'));
     }
 
     @Test public void testGuessLetterReturnsFailureMessage() {
@@ -59,6 +59,28 @@ public class WordGameTest {
         WordChooser mockedChooser = mock(WordChooser.class);
         when(mockedChooser.getRandomWordFromDictionary()).thenReturn("MAKERS");
         WordGame game = new WordGame(mockedChooser);
-        assertEquals(game.guessLetter('M'), true);
+        assertEquals(game.guessLetter('A'), true);
+    }
+
+    @Test public void testGetsWordToGuessAfterGuesses() {
+        WordChooser mockedChooser = mock(WordChooser.class);
+        when(mockedChooser.getRandomWordFromDictionary()).thenReturn("MAKERS");
+        WordGame game = new WordGame(mockedChooser);
+        game.guessLetter('K');
+        game.guessLetter('A');
+        game.guessLetter('Z');
+        assertEquals(game.getWordToGuess(), "MAK___");
+        assertEquals(game.getRemainingAttempts(), 9);
+        assertEquals(game.getGuessedChars(), Arrays.asList('K', 'A'));
+    }
+
+    @Test public void testGetsWordToGuessAfterGuessesRepeatedLetters() {
+        WordChooser mockedChooser = mock(WordChooser.class);
+        when(mockedChooser.getRandomWordFromDictionary()).thenReturn("DEVELOPER");
+        WordGame game = new WordGame(mockedChooser);
+        game.guessLetter('E');
+        assertEquals(game.getWordToGuess(), "DE_E___E_");
+        assertEquals(game.getRemainingAttempts(), 10);
+        assertEquals(game.getGuessedChars(), Arrays.asList('E'));
     }
 }

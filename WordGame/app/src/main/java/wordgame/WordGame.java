@@ -17,6 +17,8 @@ public class WordGame {
             char firstLetter = word.charAt(0);
             if (i == 0) {
                 wordToGuess.append(firstLetter);
+            } else if (guessedChars.contains(word.charAt(i))) {
+                wordToGuess.append(word.charAt(i));
             } else {
                 wordToGuess.append("_");
             }
