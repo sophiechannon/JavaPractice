@@ -10,4 +10,11 @@ public class ShoppingListTest {
         ShoppingList list = new ShoppingList();
         assertEquals(list.getItems(), Arrays.asList());
     }
+
+    @Test public void testItemsCanBeAddedToList() {
+        ShoppingList list = new ShoppingList();
+        list.addItem("Coffee");
+        list.addItem("Tea");
+        assertEquals(list.getItems(), Arrays.asList("Coffee", "Tea"));
+    }
 }

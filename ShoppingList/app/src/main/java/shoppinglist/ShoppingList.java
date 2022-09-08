@@ -6,7 +6,12 @@ import java.util.List;
 
 public class ShoppingList {
      List<String> items = new ArrayList<>();
-    public List<String> getItems() {
+
+     public void addItem(String item) {
+         items.add(item);
+     }
+
+     public List<String> getItems() {
         return items;
     }
 }
