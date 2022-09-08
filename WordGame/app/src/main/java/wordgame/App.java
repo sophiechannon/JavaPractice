@@ -3,35 +3,57 @@
  */
 package wordgame;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class App {
 
     public static void main(String[] args) {
-        WordChooser word = new WordChooser();
-        Masker masker = new Masker();
-        WordGame game = new WordGame(word, masker );
+        WordGame gameOne = new WordGame(new WordChooser(), new Masker());
+        WordGame gameTwo = new WordGame(new WordChooser(), new Masker());
+        WordGame[] players = {gameOne, gameTwo};
+        Integer current = new Random().nextInt(2);
+        String player;
+        if (current == 0) {
+            player = "Player One";
+        } else {
+            player = "Player Two";
+        }
+
         System.out.println("Welcome! Today the word to guess is:");
+        System.out.println("Player one:" + gameOne.getWordToGuess());
+        System.out.println("Player two:" + gameTwo.getWordToGuess());
+
         do {
-            System.out.println(game.getWordToGuess());
-            System.out.println("Enter one letter to guess (" + game.getRemainingAttempts() +" attempts remaining):");
+            System.out.println(player + ": enter one letter to guess (" + players[current].getRemainingAttempts() +" attempts remaining):");
+            System.out.println(players[current].getWordToGuess());
             Scanner userInput = new Scanner(System.in);
             Character letter = userInput.nextLine().charAt(0);
-            if (game.guessLetter(letter)) {
+            if (players[current].guessLetter(letter)) {
                 System.out.println("Right!");
             } else {
                 System.out.println("Wrong...");
             }
+            System.out.println("\n");
 
-            if (game.isGameWon()) {
-                System.out.println("You have guessed the word " + game.getWordToGuess() + " correctly!");
+            if (players[current].isGameWon()) {
+                System.out.println(player + " you have won!");
                 break;
             }
 
-            if (game.isGameLost()) {
-                System.out.println("You have lost.");
+            if (players[current].isGameLost()) {
+                System.out.println("You have lost!");
                 break;
             }
-        } while (game.getRemainingAttempts() > 0);
+
+            if (current == 0) {
+                current = 1;
+                player = "Player Two";
+            } else {
+                current = 0;
+                player = "Player One";
+            }
+
+        } while (players[current].getRemainingAttempts() > 0);
     }
 }
