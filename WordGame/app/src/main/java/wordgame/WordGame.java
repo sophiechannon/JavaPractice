@@ -1,10 +1,12 @@
 package wordgame;
 
-import java.util.Random;
+import java.util.ArrayList;
+import java.util.List;
 
 public class WordGame {
     String word;
     int turnsRemaining = 10;
+    List<Character> guessedChars = new ArrayList<>();
 
     WordGame(WordChooser chooser) {
         word = chooser.getRandomWordFromDictionary();
@@ -24,5 +26,19 @@ public class WordGame {
 
     public int getRemainingAttempts() {
         return turnsRemaining;
+    }
+
+    public List getGuessedChars() {
+        return guessedChars;
+    }
+
+    public Boolean guessLetter(char letter) {
+        if (word.contains(Character.toString(letter))) {
+            guessedChars.add(letter);
+            return true;
+        } else {
+            turnsRemaining --;
+            return false;
+        }
     }
 }
